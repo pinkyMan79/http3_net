@@ -1,9 +1,10 @@
 package one.terenin.rpc.spec;
 
-import org.jetbrains.annotations.Nullable;
+import lombok.Getter;
 
 import java.util.function.Function;
 
+@Getter
 public class EndpointSpec {
 
     private final String httpMethod;
@@ -22,32 +23,12 @@ public class EndpointSpec {
         this.extendedLogging = extendedLogging;
     }
 
-    public String getHttpMethod() {
-        return httpMethod;
-    }
-
-    public String getUri() {
-        return uri;
-    }
-
-    public Function<?, ?> getProcessingFunction() {
-        return processingFunction;
-    }
-
-    public boolean isExtendedLogging() {
-        return extendedLogging;
-    }
-
     private static class Builder {
         private String httpMethod;
         private String uri;
-        @Nullable
         private Function<Object[], Object[]> processingFunctionMM;
-        @Nullable
         private Function<Object, Object> processingFunctionOO;
-        @Nullable
         private Function<Object, Object[]> processingFunctionOM;
-        @Nullable
         private Function<Object[], Object> processingFunctionMO;
         private boolean extendedLogging;
 

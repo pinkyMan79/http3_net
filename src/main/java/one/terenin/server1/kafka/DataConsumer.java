@@ -66,7 +66,6 @@ public final class DataConsumer {
             System.out.println("Detected a shutdown, let's exit by calling consumer.wakeup()...");
             consumer.wakeup();
 
-            // join the main thread to allow the execution of the code in the main thread
             try {
                 Thread.currentThread().join();
             } catch (InterruptedException e) {
