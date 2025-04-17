@@ -20,6 +20,7 @@ package tech.kwik.flupke.server;
 
 import tech.kwik.flupke.core.HttpError;
 import tech.kwik.flupke.impl.frames.DataFrame;
+import tech.kwik.flupke.impl.frames.GoAwayFrame;
 import tech.kwik.flupke.impl.frames.HeadersFrame;
 import tech.kwik.flupke.impl.Http3ConnectionImpl;
 import tech.kwik.flupke.impl.frames.base.Http3Frame;
@@ -35,6 +36,7 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -139,7 +141,11 @@ public class Http3ServerConnection extends Http3ConnectionImpl implements Applic
         HeadersFrame headersFrame = (HeadersFrame) receivedFrames.stream()
                 .filter(f -> f instanceof HeadersFrame)
                 .findFirst()
-                .orElseThrow(() -> new HttpError("", 400));  // TODO
+                .orElseThrow(() -> new HttpError("", 400));
+
+        // I think it should be last frame from client
+        Optional<Http3Frame> goAwayFrame = receivedFrames.stream().filter(it -> it instanceof GoAwayFrame)
+                .findFirst();
 
         String method = headersFrame.getPseudoHeader(HeadersFrame.PSEUDO_HEADER_METHOD);
         String path = headersFrame.getPseudoHeader(HeadersFrame.PSEUDO_HEADER_PATH);
@@ -177,6 +183,10 @@ public class Http3ServerConnection extends Http3ConnectionImpl implements Applic
 
         try {
             requestHandler.handleRequest(request, response);
+            if (goAwayFrame.isPresent()) {
+                // not found another connection break method
+                quicStream.abortReading(400);
+            }
             response.getOutputStream().close();
         } catch (IOException e) {
             // Ignore, there is nothing we can do. Note Kwik will not throw exception when writing to stream

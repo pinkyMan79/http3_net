@@ -462,8 +462,7 @@ public class Http3ClientConnectionImpl extends Http3ConnectionImpl implements Ht
             HttpResponseInfo responseInfo;
             try {
                 responseInfo = new HttpResponseInfo((HeadersFrame) responseFrame);
-            }
-            catch (MalformedResponseException e) {
+            } catch (MalformedResponseException e) {
                 throw new ProtocolException("Malformed response from server: missing status code");
             }
             int statusCode = responseInfo.statusCode();
