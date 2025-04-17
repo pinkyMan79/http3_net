@@ -16,16 +16,19 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package tech.kwik.flupke.impl;
+package tech.kwik.flupke.impl.frames;
 
 import tech.kwik.core.generic.InvalidIntegerEncodingException;
 import tech.kwik.core.generic.VariableLengthInteger;
+import tech.kwik.flupke.impl.frames.base.Http3Frame;
 
 import java.nio.ByteBuffer;
 
 
 // https://www.rfc-editor.org/rfc/rfc9114.html#name-data
-public class DataFrame extends Http3Frame {
+public final class DataFrame extends Http3Frame {
+
+    public static final int DATA_FRAME_TYPE = 0x00;
 
     private ByteBuffer payload;
 

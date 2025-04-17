@@ -20,6 +20,7 @@ package tech.kwik.flupke.impl;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import tech.kwik.flupke.impl.frames.HeadersFrame;
 import tech.kwik.qpack.Decoder;
 import tech.kwik.qpack.Encoder;
 

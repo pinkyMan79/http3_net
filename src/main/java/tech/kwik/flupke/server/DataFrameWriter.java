@@ -18,7 +18,7 @@
  */
 package tech.kwik.flupke.server;
 
-import tech.kwik.flupke.impl.DataFrame;
+import tech.kwik.flupke.impl.frames.DataFrame;
 
 import java.io.IOException;
 import java.io.OutputStream;

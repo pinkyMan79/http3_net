@@ -16,9 +16,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package tech.kwik.flupke.impl;
+package tech.kwik.flupke.impl.frames;
 
 import tech.kwik.core.generic.VariableLengthInteger;
+import tech.kwik.flupke.impl.frames.base.Http3Frame;
 import tech.kwik.qpack.Decoder;
 import tech.kwik.qpack.Encoder;
 
@@ -32,7 +33,9 @@ import java.util.stream.Collectors;
 
 
 // https://www.rfc-editor.org/rfc/rfc9114.html#section-7.2.2
-public class HeadersFrame extends Http3Frame {
+public final class HeadersFrame extends Http3Frame {
+
+    public static final int HEADERS_FRAME_TYPE = 0x01;
 
     // https://www.rfc-editor.org/rfc/rfc9114.html#name-request-pseudo-header-field
     public static final String PSEUDO_HEADER_METHOD = ":method";
@@ -42,8 +45,8 @@ public class HeadersFrame extends Http3Frame {
     // https://www.rfc-editor.org/rfc/rfc9114.html#name-response-pseudo-header-fiel
     public static final String PSEUDO_HEADER_STATUS = ":status";
 
-    protected HttpHeaders httpHeaders;
-    protected Map<String, String> pseudoHeaders;
+    private HttpHeaders httpHeaders;
+    private final Map<String, String> pseudoHeaders;
 
     public HeadersFrame() {
         pseudoHeaders = new HashMap<>();

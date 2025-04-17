@@ -19,10 +19,10 @@
 package tech.kwik.flupke.server;
 
 import tech.kwik.flupke.core.HttpError;
-import tech.kwik.flupke.impl.DataFrame;
-import tech.kwik.flupke.impl.HeadersFrame;
+import tech.kwik.flupke.impl.frames.DataFrame;
+import tech.kwik.flupke.impl.frames.HeadersFrame;
 import tech.kwik.flupke.impl.Http3ConnectionImpl;
-import tech.kwik.flupke.impl.Http3Frame;
+import tech.kwik.flupke.impl.frames.base.Http3Frame;
 import tech.kwik.core.QuicConnection;
 import tech.kwik.core.QuicStream;
 import tech.kwik.core.server.ApplicationProtocolConnection;

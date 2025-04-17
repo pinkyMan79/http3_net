@@ -20,7 +20,7 @@ package tech.kwik.flupke.test;
 
 import tech.kwik.flupke.impl.Http3ClientConnectionImpl;
 import tech.kwik.flupke.impl.Http3ConnectionImpl;
-import tech.kwik.flupke.impl.SettingsFrame;
+import tech.kwik.flupke.impl.frames.SettingsFrame;
 import tech.kwik.core.QuicClientConnection;
 import tech.kwik.core.QuicConnection;
 import tech.kwik.core.QuicStream;

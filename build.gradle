@@ -16,6 +16,9 @@ repositories {
 dependencies {
     implementation group: 'tech.kwik', name: 'kwik', version: '0.10'
     implementation group: 'tech.kwik', name: 'qpack', version: '2.0'
+    implementation("org.apache.kafka:kafka-clients:4.0.0")
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.18.3")
 
     def junitVersion = "5.10.0"
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
@@ -124,6 +127,11 @@ def pomContent = {
             id = 'peterd'
             name = 'Peter Doornbosch'
             email = 'peter.doornbosch@gmail.com'
+        }
+        developer {
+            id = 'kartopelniy'
+            name = 'Terenin Danila'
+            email = 'terenindanila5@gmail.com@gmail.com'
         }
     }
 

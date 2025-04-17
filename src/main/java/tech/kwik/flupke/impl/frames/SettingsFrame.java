@@ -16,10 +16,11 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package tech.kwik.flupke.impl;
+package tech.kwik.flupke.impl.frames;
 
 import tech.kwik.core.generic.InvalidIntegerEncodingException;
 import tech.kwik.core.generic.VariableLengthInteger;
+import tech.kwik.flupke.impl.frames.base.Http3Frame;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -27,7 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 // https://www.rfc-editor.org/rfc/rfc9114.html#name-settings
-public class SettingsFrame extends Http3Frame {
+public final class SettingsFrame extends Http3Frame {
 
     // https://www.rfc-editor.org/rfc/rfc9114.html#name-settings
     public static final int SETTINGS_FRAME_TYPE = 0x04;

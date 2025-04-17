@@ -20,6 +20,9 @@ package tech.kwik.flupke.impl;
 
 import tech.kwik.flupke.core.HttpError;
 import tech.kwik.flupke.core.HttpStream;
+import tech.kwik.flupke.impl.frames.base.Http3Frame;
+import tech.kwik.flupke.impl.frames.SettingsFrame;
+import tech.kwik.flupke.impl.frames.UnknownFrame;
 import tech.kwik.flupke.test.Http3ClientConnectionBuilder;
 import tech.kwik.flupke.test.Http3ConnectionBuilder;
 import org.junit.jupiter.api.Test;

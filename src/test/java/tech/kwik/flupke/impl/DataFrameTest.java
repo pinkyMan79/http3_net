@@ -20,6 +20,7 @@ package tech.kwik.flupke.impl;
 
 
 import org.junit.jupiter.api.Test;
+import tech.kwik.flupke.impl.frames.DataFrame;
 
 import java.nio.ByteBuffer;
 

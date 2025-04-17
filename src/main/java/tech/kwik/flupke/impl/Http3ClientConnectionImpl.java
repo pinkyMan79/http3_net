@@ -27,6 +27,8 @@ import tech.kwik.core.generic.VariableLengthInteger;
 import tech.kwik.core.log.Logger;
 import tech.kwik.core.log.NullLogger;
 import tech.kwik.flupke.core.*;
+import tech.kwik.flupke.impl.frames.*;
+import tech.kwik.flupke.impl.frames.base.Http3Frame;
 import tech.kwik.qpack.Encoder;
 
 import java.io.*;

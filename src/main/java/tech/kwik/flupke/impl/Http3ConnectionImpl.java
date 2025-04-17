@@ -24,6 +24,8 @@ import tech.kwik.flupke.core.HttpStream;
 import tech.kwik.core.QuicConnection;
 import tech.kwik.core.QuicStream;
 import tech.kwik.core.generic.VariableLengthInteger;
+import tech.kwik.flupke.impl.frames.*;
+import tech.kwik.flupke.impl.frames.base.Http3Frame;
 import tech.kwik.qpack.Decoder;
 import tech.kwik.qpack.Encoder;
 
@@ -38,9 +40,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import static tech.kwik.flupke.impl.SettingsFrame.QPACK_BLOCKED_STREAMS;
-import static tech.kwik.flupke.impl.SettingsFrame.QPACK_MAX_TABLE_CAPACITY;
-import static tech.kwik.flupke.impl.SettingsFrame.SETTINGS_ENABLE_CONNECT_PROTOCOL;
+import static tech.kwik.flupke.impl.frames.SettingsFrame.QPACK_BLOCKED_STREAMS;
+import static tech.kwik.flupke.impl.frames.SettingsFrame.QPACK_MAX_TABLE_CAPACITY;
+import static tech.kwik.flupke.impl.frames.SettingsFrame.SETTINGS_ENABLE_CONNECT_PROTOCOL;
 
 public class Http3ConnectionImpl implements Http3Connection {
 
@@ -346,10 +348,14 @@ public class Http3ConnectionImpl implements Http3Connection {
                 frame = new SettingsFrame().parsePayload(ByteBuffer.wrap(readExact(inputStream, payloadLength)));
                 break;
             case FRAME_TYPE_GOAWAY:
+                frame = new GoAwayFrame().parseFromBytes(ByteBuffer.wrap(readExact(inputStream, payloadLength)));
+                break;
             case FRAME_TYPE_CANCEL_PUSH:
             case FRAME_TYPE_MAX_PUSH_ID:
-            case FRAME_TYPE_PUSH_PROMISE:
                 throw new NotYetImplementedException("Frame type " + frameType + " not yet implemented");
+            case FRAME_TYPE_PUSH_PROMISE:
+                frame = new PushPromiseFrame().parsePayload(readExact(inputStream, payloadLength), qpackDecoder);
+                break;
             default:
                 // https://www.rfc-editor.org/rfc/rfc9114.html#extensions
                 // "Extensions are permitted to use new frame types (Section 7.2), ...."

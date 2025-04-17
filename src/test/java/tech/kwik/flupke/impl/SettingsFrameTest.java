@@ -21,6 +21,7 @@ package tech.kwik.flupke.impl;
 import tech.kwik.core.generic.InvalidIntegerEncodingException;
 import tech.kwik.core.generic.VariableLengthInteger;
 import org.junit.jupiter.api.Test;
+import tech.kwik.flupke.impl.frames.SettingsFrame;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

@@ -19,8 +19,8 @@
 package tech.kwik.flupke.server;
 
 import tech.kwik.flupke.core.HttpError;
-import tech.kwik.flupke.impl.DataFrame;
-import tech.kwik.flupke.impl.HeadersFrame;
+import tech.kwik.flupke.impl.frames.DataFrame;
+import tech.kwik.flupke.impl.frames.HeadersFrame;
 import org.junit.jupiter.api.Test;
 import tech.kwik.core.QuicConnection;
 import tech.kwik.core.QuicStream;

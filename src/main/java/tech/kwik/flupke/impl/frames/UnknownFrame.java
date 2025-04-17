@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019, 2020, 2021, 2022, 2023, 2024, 2025 Peter Doornbosch
+ * Copyright © 2023, 2024, 2025 Peter Doornbosch
  *
  * This file is part of Flupke, a HTTP3 client Java library
  *
@@ -16,8 +16,12 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package tech.kwik.flupke.impl;
+package tech.kwik.flupke.impl.frames;
 
+import tech.kwik.flupke.impl.frames.base.Http3Frame;
 
-public abstract class Http3Frame {
+/**
+ * A HTTP3 frame with unknown type.
+ */
+public class UnknownFrame extends Http3Frame {
 }
