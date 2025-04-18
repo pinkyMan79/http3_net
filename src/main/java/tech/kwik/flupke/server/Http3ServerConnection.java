@@ -185,7 +185,7 @@ public class Http3ServerConnection extends Http3ConnectionImpl implements Applic
             requestHandler.handleRequest(request, response);
             if (goAwayFrame.isPresent()) {
                 // not found another connection break method
-                quicStream.abortReading(400);
+                quicStream.abortReading(0x010c);
             }
             response.getOutputStream().close();
         } catch (IOException e) {
